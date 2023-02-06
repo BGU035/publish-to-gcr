@@ -20,9 +20,6 @@ jobs:
         load: true
         tags: ${{ env.TEST_TAG }}
         
-    - name: Run the hello-docker Docker image
-      run: |
-       docker run ghcr.io/bgu035/publish-to-gcr:latest
        
     - name: Docker push
       uses: docker/build-push-action@v3
