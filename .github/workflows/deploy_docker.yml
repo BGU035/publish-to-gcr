@@ -1,5 +1,8 @@
 name: publish
 on: [push]
+env:
+  TEST_TAG: ghcr.io/bgu035/publish-to-gcr:test
+  LATEST_TAG: ghcr.io/bgu035/publish-to-gcr:latest
 jobs:
   publish-hello-docker-image:
     runs-on: ubuntu-latest
