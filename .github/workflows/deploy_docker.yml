@@ -13,8 +13,21 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         
-    - name: Build the hello-docker Docker image
+    - name: Docker build
+        uses:docker/build-push-action@v3
+        with:
+          context: .
+          load: true
+          tags: ${{ env.TEST_TAG }}
+        
+    - name: Run the hello-docker Docker image
       run: |
-       docker build . --tag ghcr.io/bgu035/publish-to-gcr:latest
        docker run ghcr.io/bgu035/publish-to-gcr:latest
-       docker push ghcr.io/bgu035/publish-to-gcr:latest
+       
+    - name: Docker push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ env.LATEST_TAG }}
+
